@@ -459,20 +459,20 @@ if (state == STANDING || state == RUNNING)
                     xAcc *= 0.5
             }
         }
-        if (facing == LEFT && position_meeting((x - 7), (y - 31), oSolid) && position_meeting(x, (y - 35), oSolid) == 0 && position_meeting((x - 7), (y - 35), oSolid) == 0 && kJump && kJumpPushedSteps == 0 && global.powergrip && global.opautoclimb && y > 32)
+        if (facing == LEFT && position_meeting((x - 7), (y - 8), oSolid) && position_meeting(x, y, oSolid) == 0 && position_meeting((x - 7), y, oSolid) == 0 && kJump && kJumpPushedSteps == 0 && global.powergrip && global.opautoclimb && y > 32)
         {
-            if (position_meeting((x - 7), (y - 52), oSolid) == 0 || global.morphball)
+            if (position_meeting((x - 7), (y + 20), oSolid) == 0 || global.morphball)
             {
                 state = CLIMBING
                 statetime = 0
                 image_index = 0
                 sfx_play(sndPullUp)
-                y -= 5
+                y += 5
             }
         }
-        if (facing == LEFT && position_meeting((x - 7), (y - 14), oSolid) && position_meeting((x - 7), (y - 22), oSolid) == 0 && kJump && kJumpPushedSteps == 0 && global.powergrip && global.opautoclimb && y > 32)
+        if (facing == LEFT && position_meeting((x - 7), (y - 27), oSolid) && position_meeting((x - 7), (y - 22), oSolid) == 0 && kJump && kJumpPushedSteps == 0 && global.powergrip && global.opautoclimb && y > 32)
         {
-            if (position_meeting((x - 7), (y - 35), oSolid) == 0 || global.morphball)
+            if (position_meeting((x - 7), (y + 2), oSolid) == 0 || global.morphball)
             {
                 state = CLIMBING
                 statetime = 4
@@ -528,20 +528,20 @@ if (state == STANDING || state == RUNNING)
                     xAcc *= 0.5
             }
         }
-        if (facing == RIGHT && position_meeting((x + 7), (y - 31), oSolid) && position_meeting(x, (y - 35), oSolid) == 0 && position_meeting((x + 7), (y - 35), oSolid) == 0 && kJump && kJumpPushedSteps == 0 && global.powergrip && global.opautoclimb)
+        if (facing == RIGHT && position_meeting((x + 7), (y - 8), oSolid) && position_meeting(x, y, oSolid) == 0 && position_meeting((x + 7), y, oSolid) == 0 && kJump && kJumpPushedSteps == 0 && global.powergrip && global.opautoclimb)
         {
-            if (position_meeting((x + 7), (y - 52), oSolid) == 0 || global.morphball)
+            if (position_meeting((x + 7), (y + 20), oSolid) == 0 || global.morphball)
             {
                 state = CLIMBING
                 statetime = 0
                 image_index = 0
                 sfx_play(sndPullUp)
-                y -= 5
+                y += 5
             }
         }
-        if (facing == RIGHT && position_meeting((x + 7), (y - 14), oSolid) && position_meeting((x + 7), (y - 22), oSolid) == 0 && kJump && kJumpPushedSteps == 0 && global.powergrip && global.opautoclimb)
+        if (facing == RIGHT && position_meeting((x + 7), (y - 27), oSolid) && position_meeting((x + 7), (y - 22), oSolid) == 0 && kJump && kJumpPushedSteps == 0 && global.powergrip && global.opautoclimb)
         {
-            if (position_meeting((x + 7), (y - 35), oSolid) == 0 || global.morphball)
+            if (position_meeting((x + 7), (y + 2), oSolid) == 0 || global.morphball)
             {
                 state = CLIMBING
                 statetime = 4
@@ -877,7 +877,7 @@ if ((isCollisionTop(1) || isCollisionPlatformTop(1)) && platformCharacterIs(IN_A
     {
         if ((!inwater) && (!moverobj))
         {
-            smk = instance_create(x, y, oFXAnimSpark)
+            smk = instance_create(x, y - 37, oFXAnimSpark)
             smk.image_speed = 0.5
             smk.hspeed = 0.5
             smk.additive = 0
@@ -885,7 +885,7 @@ if ((isCollisionTop(1) || isCollisionPlatformTop(1)) && platformCharacterIs(IN_A
             smk.image_alpha = 0.6
             smk.image_xscale = 0.7
             smk.image_yscale = 0.7
-            smk = instance_create(x, y, oFXAnimSpark)
+            smk = instance_create(x, y - 37, oFXAnimSpark)
             smk.image_speed = 0.5
             smk.hspeed = -0.5
             smk.additive = 0
@@ -1280,8 +1280,11 @@ if (state == SUPERJUMP)
         }
         if (facing == LEFT)
         {
-            while (isCollisionLeft(1) == 0)
-                x -= 1
+            repeat (4)
+            {
+                if (isCollisionLeft(1) == 0)
+                    x -= 1
+            }
         }
         if ((facing == RIGHT && (kRight == 0 || kLeft > 0)) || (facing == LEFT && (kLeft == 0 || kRight > 0)))
         {
@@ -2280,9 +2283,9 @@ if (state == JUMPING && vjump == 0 && walljumping == 0 && statetime > 4 && justw
             yVel = -1.5
     }
 }
-if (platformCharacterIs(IN_AIR) && state != AIRBALL && position_meeting(x, (y + 10), oSolid) == 0 && position_meeting(x, (y - 32), oSolid) == 0 && yVel > 0 && y > 32 && global.powergrip == 1)
+if (platformCharacterIs(IN_AIR) && state != AIRBALL && position_meeting(x, (y - 47), oSolid) == 0 && position_meeting(x, (y - 4), oSolid) == 0 && yVel > 0 && y > 32 && global.powergrip == 1)
 {
-    if (facing == RIGHT && position_meeting((x + 7), (y - 26), oSolid) == 1 && position_meeting((x + 7), (y - 26), oMovingSolid) == 0 && position_meeting((x + 7), (y - 32), oSolid) == 0 && kRight > 0 && dash == 0)
+    if (facing == RIGHT && position_meeting((x + 7), (y - 14), oSolid) == 1 && position_meeting((x + 7), (y - 14), oMovingSolid) == 0 && position_meeting((x + 7), (y - 9), oSolid) == 0 && kRight > 0 && dash == 0)
     {
         state = GRIP
         statetime = 0
@@ -2297,7 +2300,7 @@ if (platformCharacterIs(IN_AIR) && state != AIRBALL && position_meeting(x, (y + 
         y -= 5
         sfx_play(sndGrab)
     }
-    if (facing == LEFT && position_meeting((x - 7), (y - 26), oSolid) == 1 && position_meeting((x - 7), (y - 26), oMovingSolid) == 0 && position_meeting((x - 7), (y - 32), oSolid) == 0 && kLeft > 0 && dash == 0)
+    if (facing == LEFT && position_meeting((x - 7), (y - 14), oSolid) == 1 && position_meeting((x - 7), (y - 14), oMovingSolid) == 0 && position_meeting((x - 7), (y - 9), oSolid) == 0 && kLeft > 0 && dash == 0)
     {
         state = GRIP
         statetime = 0
@@ -2417,46 +2420,47 @@ if (state == GRIP && facing == LEFT)
 }
 if (state == CLIMBING)
 {
+    create_debug_point(x, y - 18)
     canturn = 0
     canbehit = 0
     if (statetime == 2)
-        y -= 6
+        y += 6
     if (statetime == 3)
-        y -= 6
+        y += 6
     if (statetime == 5)
-        y -= 2
+        y += 2
     if (statetime == 6)
-        y -= 2
+        y += 2
     if (facing == RIGHT)
     {
         if (statetime == 8)
         {
-            y -= 1
+            y += 1
             x += 4
         }
         if (statetime == 9)
         {
-            y -= 1
+            y += 1
             x += 3
         }
         if (statetime == 10)
         {
-            y -= 2
+            y += 2
             x += 2
         }
         if (statetime == 11)
         {
-            y -= 2
+            y += 2
             x += 2
         }
         if (statetime == 12)
         {
-            y -= 2
+            y += 2
             x += 1
         }
         if (statetime == 13)
         {
-            y -= 2
+            y += 2
             x += 1
         }
     }
@@ -2464,32 +2468,32 @@ if (state == CLIMBING)
     {
         if (statetime == 8)
         {
-            y -= 1
+            y += 1
             x -= 4
         }
         if (statetime == 9)
         {
-            y -= 1
+            y += 1
             x -= 3
         }
         if (statetime == 10)
         {
-            y -= 2
+            y += 2
             x -= 2
         }
         if (statetime == 11)
         {
-            y -= 2
+            y += 2
             x -= 2
         }
         if (statetime == 12)
         {
-            y -= 2
+            y += 2
             x -= 1
         }
         if (statetime == 13)
         {
-            y -= 2
+            y += 2
             x -= 1
         }
     }
@@ -2497,7 +2501,7 @@ if (state == CLIMBING)
     {
         if (position_meeting(x, (y - 18), oSolid) == 0)
         {
-            y -= 1
+            y += 1
             landing = 1
             state = STANDING
             statetime = 0
@@ -2519,7 +2523,7 @@ if (state == CLIMBING)
         }
         if (position_meeting(x, (y - 18), oSolid) == 1)
         {
-            y -= 1
+            y += 1
             state = BALL
             statetime = 0
             image_index = 0
@@ -2530,9 +2534,9 @@ if (state == CLIMBING)
         canbehit = 1
     }
     if (statetime > 6 && (isCollisionRightSlope(1) || isCollisionLeftSlope(1)))
-        y -= 1
+        y += 1
     if (statetime >= 12 && (isCollisionRightSlope(1) || isCollisionLeftSlope(1)))
-        y -= 1
+        y += 1
 }
 if (state == GRABBEDGAMMA)
 {
@@ -3456,13 +3460,13 @@ if (pbomb_drain > 0)
 else
     pbomb_drainfx = 0
 if (state != BALL && state != AIRBALL && state != SPIDERBALL && state != SUPERJUMP)
-    setCollisionBounds(-6, -38, 6, 0)
+    setCollisionBounds(-6, -38, 6, -11)
 if (state == BALL)
     setCollisionBounds(-6, -13, 6, 0)
 if (state == SPIDERBALL || state == AIRBALL || state == WATERJET || state == KNOCKBACK1 || state == KNOCKBACK2 || ((state == HURT || state == BRAKING || state == SJSTART || state == SJEND) && sjball == 1))
     setCollisionBounds(-6, -13, 6, 0)
 if (state == SUPERJUMP && sjdir != 0 && sjball == 0)
-    setCollisionBounds(-6, -22, 6, 0)
+    setCollisionBounds(-6, -33, 6, -11)
 if (state == SUPERJUMP && (sjdir == 3 || sjdir == 4) && sjball == 0)
     setCollisionBounds(-6, -27, 6, 0)
 if (state == SUPERJUMP && sjball == 1)
