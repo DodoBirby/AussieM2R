@@ -932,12 +932,12 @@ if ((isCollisionLeft(1) && xVel < 0) || (isCollisionRight(1) && xVel > 0))
 {
     if (aimlock == 0 && dash == 0)
         xVel = 0
-    if (dash > 0 && ((collision_line((x + 7), (y - 14), x, (y - 14), oSolid, true, true) > 0 && facing == RIGHT) || (collision_line((x - 7), (y - 14), x, (y - 14), oSolid, true, true) > 0 && facing == LEFT)))
+    if (dash > 0 && ((collision_line((x + 7), (y - 10), x, (y - 10), oSolid, true, true) > 0 && facing == RIGHT) || (collision_line((x - 7), (y - 10), x, (y - 10), oSolid, true, true) > 0 && facing == LEFT)))
     {
         dash = 0
         canturn = 1
     }
-    if (dash > 0 && state != BALL && ((collision_line((x + 7), (y - 24), x, (y - 24), oSolid, true, true) > 0 && facing == RIGHT) || (collision_line((x - 7), (y - 24), x, (y - 24), oSolid, true, true) > 0 && facing == LEFT)))
+    if (dash > 0 && state != BALL && ((collision_line((x + 7), (y - 20), x, (y - 20), oSolid, true, true) > 0 && facing == RIGHT) || (collision_line((x - 7), (y - 20), x, (y - 20), oSolid, true, true) > 0 && facing == LEFT)))
     {
         dash = 0
         canturn = 1
@@ -1172,7 +1172,7 @@ if (state == SJSTART)
         unmorphing = 0
         if isCollisionTop(1)
         {
-            sjtargety = floor(y) - 8
+            sjtargety = floor(y) + 8
             sjtype = 0
         }
         else
@@ -1181,12 +1181,12 @@ if (state == SJSTART)
             sjtype = 1
         }
         if (isCollisionBottom(2) == 0)
-            y -= 2
+            y += 2
     }
     if (statetime > 0)
     {
-        if (y > sjtargety && isCollisionBottom(1) == 0)
-            y -= 1
+        if (y < sjtargety && isCollisionBottom(1) == 0)
+            y += 1
         if isCollisionLeft(1)
             x += 1
         if isCollisionRight(1)
@@ -1205,7 +1205,7 @@ if (state == SJSTART)
     if (statetime == 6 && kJump)
     {
         if (sjtype == 0)
-            sjtargety -= 10
+            sjtargety += 10
     }
     if (statetime == 18)
     {
