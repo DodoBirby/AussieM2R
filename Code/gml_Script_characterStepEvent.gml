@@ -1460,6 +1460,7 @@ if (state == DUCKING)
             image_index = 0
             statetime = 0
             turning = 0
+            y -= 24
             sfx_play(sndMorph)
         }
         if (statetime > 10 && kLeftPushedSteps > 10 && position_meeting((x - 7), (y - 22), oSolid) == 0 && position_meeting((x - 7), (y - 8), oSolid) == 0)
@@ -1480,6 +1481,7 @@ if (state == DUCKING)
             image_index = 0
             statetime = 0
             turning = 0
+            y -= 24
             sfx_play(sndMorph)
         }
         if (statetime > 10 && kRightPushedSteps > 10 && position_meeting((x + 7), (y - 22), oSolid) == 0 && position_meeting((x + 7), (y - 8), oSolid) == 0)
@@ -2096,6 +2098,7 @@ if (global.morphball == 1 && unmorphing == 0 && nomorph == 0 && ((global.opmrpst
     xVel = 0
     dash = 0
     nomorph = 10
+    y -= 24
     sfx_play(sndMorph)
 }
 if (state == JUMPING && statetime > 2 && global.morphball == 1 && unmorphing == 0 && nomorph == 0 && global.classicmode == 0 && ((global.opmrpstyle == 1 && kDown && kDownPushedSteps == 0 && aimdirection == 7) || (kMorph && kMorphPushedSteps == 0)))
@@ -2118,6 +2121,7 @@ if (state == JUMPING && statetime > 2 && global.morphball == 1 && unmorphing == 
         xVel = 0
         xAcc = 0
     }
+    y -= 24
     sfx_play(sndMorph)
 }
 if (kDown && kDownPushedSteps == 0 && platformCharacterIs(ON_GROUND) && state != BALL && state != RUNNING && state != DUCKING)
@@ -2203,6 +2207,7 @@ if (state == BALL && morphing == 0 && dash == 0 && moverobj == 0 && nomorph == 0
         image_index = 0
         xVel = 0
         xAcc = 0
+        y += 24
         sfx_play(sndUnMorph)
         if (facing == RIGHT)
             aimdirection = 0
@@ -2234,6 +2239,7 @@ if (state == AIRBALL && morphing == 0 && moverobj == 0 && nomorph == 0 && ((glob
             xAcc = 0
         }
         cmmorph = 10
+        y += 24
         sfx_play(sndUnMorph)
         sball = 0
         sjball = 0
@@ -2529,6 +2535,7 @@ if (state == CLIMBING)
             image_index = 0
             morphing = 1
             canturn = 1
+            y -= 24
             sfx_play(sndMorph)
         }
         canbehit = 1
@@ -2668,6 +2675,7 @@ if (state == GRABBEDQUEEN)
         xVel = 0
         dash = 0
         nomorph = 10
+        y -= 24
         sfx_play(sndMorph)
         aimlock = 0
     }

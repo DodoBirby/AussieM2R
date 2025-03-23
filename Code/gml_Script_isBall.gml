@@ -1,0 +1,1 @@
+return oCharacter.mask_index == sMask4;

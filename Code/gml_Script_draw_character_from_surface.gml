@@ -1,5 +1,5 @@
 var offset = 14
-if (string_count("Ball", sprite_get_name(oCharacter.sprite_index)) > 0) {
+if (isBall()) {
     offset = 38
 }
 
