@@ -382,6 +382,10 @@ if (isCollisionTop(1) || isCollisionPlatformTop(1))
 else
     collision_bottom = 0
 SetSpinJumpSound()
+var animOffset = -37
+if (isBall()) {
+    animOffset = -18
+}
 if (state == STANDING || state == RUNNING)
 {
     idle += 1
@@ -398,7 +402,7 @@ if (state == STANDING || state == RUNNING)
             sfx_play(sndBrake)
             if (!inwater)
             {
-                smk = instance_create(x, y, oFXAnimSpark)
+                smk = instance_create(x, y + animOffset, oFXAnimSpark)
                 smk.image_speed = 0.5
                 smk.additive = 0
                 smk.sprite_index = sSmoke1
@@ -877,7 +881,7 @@ if ((isCollisionTop(1) || isCollisionPlatformTop(1)) && platformCharacterIs(IN_A
     {
         if ((!inwater) && (!moverobj))
         {
-            smk = instance_create(x, y - 37, oFXAnimSpark)
+            smk = instance_create(x, y + animOffset, oFXAnimSpark)
             smk.image_speed = 0.5
             smk.hspeed = 0.5
             smk.additive = 0
@@ -885,7 +889,7 @@ if ((isCollisionTop(1) || isCollisionPlatformTop(1)) && platformCharacterIs(IN_A
             smk.image_alpha = 0.6
             smk.image_xscale = 0.7
             smk.image_yscale = 0.7
-            smk = instance_create(x, y - 37, oFXAnimSpark)
+            smk = instance_create(x, y + animOffset, oFXAnimSpark)
             smk.image_speed = 0.5
             smk.hspeed = -0.5
             smk.additive = 0
@@ -1023,7 +1027,7 @@ if (state == BALL || state == AIRBALL)
             sfx_play(sndBrake)
             if (!inwater)
             {
-                smk = instance_create(x, y, oFXAnimSpark)
+                smk = instance_create(x, y + animOffset, oFXAnimSpark)
                 smk.image_speed = 0.5
                 smk.additive = 0
                 smk.sprite_index = sSmoke1
@@ -1460,7 +1464,7 @@ if (state == DUCKING)
             image_index = 0
             statetime = 0
             turning = 0
-            y -= 24
+            startMorph()
             sfx_play(sndMorph)
         }
         if (statetime > 10 && kLeftPushedSteps > 10 && position_meeting((x - 7), (y - 22), oSolid) == 0 && position_meeting((x - 7), (y - 8), oSolid) == 0)
@@ -1774,7 +1778,7 @@ if (state == KNOCKBACK1_LAND)
         image_speed = 0
         if (!inwater)
         {
-            smk = instance_create(x, y, oFXAnimSpark)
+            smk = instance_create(x, y + animOffset, oFXAnimSpark)
             smk.image_speed = 0.5
             smk.hspeed = 0.7
             smk.additive = 0
@@ -1782,7 +1786,7 @@ if (state == KNOCKBACK1_LAND)
             smk.image_alpha = 0.6
             smk.image_xscale = 0.7
             smk.image_yscale = 0.7
-            smk = instance_create(x, y, oFXAnimSpark)
+            smk = instance_create(x, y + animOffset, oFXAnimSpark)
             smk.image_speed = 0.5
             smk.hspeed = -0.7
             smk.additive = 0
@@ -1862,6 +1866,7 @@ if (state == KNOCKBACK2)
         turning = 0
         statetime = 0
         state = KNOCKBACK2_LAND
+        y += 25
         PlayLandingSound(get_floor_material())
     }
 }
@@ -1890,16 +1895,9 @@ if (state == KNOCKBACK2_LAND)
         idle = 0
     }
     xFric = 0.85
-    if (isCollisionTop(1) == 0)
-    {
-        state = JUMPING
-        vjump = 1
-        statetime = 0
-        image_index = 0
-    }
     if (fxtimer == 0)
     {
-        smk = instance_create((x - 6 + random(12)), (y - 4), oFXAnimSpark)
+        smk = instance_create((x - 6 + random(12)), (y - 4 + animOffset), oFXAnimSpark)
         smk.image_speed = 0.5
         smk.additive = 0
         smk.sprite_index = sSmoke1
@@ -1952,7 +1950,7 @@ if (state == A4EXPL)
     {
         if (fxtimer == 0)
         {
-            smk = instance_create((x - 8 + random(16)), (y - 2), oFXAnimSpark)
+            smk = instance_create((x - 8 + random(16)), (y - 2 + animOffset), oFXAnimSpark)
             smk.image_speed = 0.5
             smk.additive = 0
             smk.sprite_index = sSmoke1
@@ -2002,7 +2000,7 @@ if (state == WATERJET)
     if (statetime == 120)
     {
         instance_create(x, y, oA2WaterSpawner)
-        w = instance_create(x, (y - 8), oFXAnimSpark)
+        w = instance_create(x, (y - 8) + animOffset, oFXAnimSpark)
         w.image_speed = 0.6
         w.additive = 0
         w.sprite_index = sWaterSplash
@@ -2098,7 +2096,7 @@ if (global.morphball == 1 && unmorphing == 0 && nomorph == 0 && ((global.opmrpst
     xVel = 0
     dash = 0
     nomorph = 10
-    y -= 24
+    startMorph()
     sfx_play(sndMorph)
 }
 if (state == JUMPING && statetime > 2 && global.morphball == 1 && unmorphing == 0 && nomorph == 0 && global.classicmode == 0 && ((global.opmrpstyle == 1 && kDown && kDownPushedSteps == 0 && aimdirection == 7) || (kMorph && kMorphPushedSteps == 0)))
@@ -2121,7 +2119,7 @@ if (state == JUMPING && statetime > 2 && global.morphball == 1 && unmorphing == 
         xVel = 0
         xAcc = 0
     }
-    y -= 24
+    startMorph()
     sfx_play(sndMorph)
 }
 if (kDown && kDownPushedSteps == 0 && platformCharacterIs(ON_GROUND) && state != BALL && state != RUNNING && state != DUCKING)
@@ -2171,7 +2169,7 @@ if (state == BRAKING && statetime > 3 && kDown && kLeft == 0 && kRight == 0)
     canturn = 1
     charge = 240
     sfx_loop(sndSBChargeLoop)
-    expl = instance_create(x, y, oFXAnimSpark)
+    expl = instance_create(x, y + animOffset, oFXAnimSpark)
     expl.image_speed = 0.5
     expl.sprite_index = sSBChargeFX
     expl.depth = -150
@@ -2208,6 +2206,9 @@ if (state == BALL && morphing == 0 && dash == 0 && moverobj == 0 && nomorph == 0
         xVel = 0
         xAcc = 0
         y += 24
+        with (oSBTrail) {
+            instance_destroy()
+        }
         sfx_play(sndUnMorph)
         if (facing == RIGHT)
             aimdirection = 0
@@ -2240,6 +2241,9 @@ if (state == AIRBALL && morphing == 0 && moverobj == 0 && nomorph == 0 && ((glob
         }
         cmmorph = 10
         y += 24
+        with (oSBTrail) {
+            instance_destroy()
+        }
         sfx_play(sndUnMorph)
         sball = 0
         sjball = 0
@@ -2535,7 +2539,7 @@ if (state == CLIMBING)
             image_index = 0
             morphing = 1
             canturn = 1
-            y -= 24
+            startMorph()
             sfx_play(sndMorph)
         }
         canbehit = 1
@@ -2675,7 +2679,7 @@ if (state == GRABBEDQUEEN)
         xVel = 0
         dash = 0
         nomorph = 10
-        y -= 24
+        startMorph()
         sfx_play(sndMorph)
         aimlock = 0
     }
