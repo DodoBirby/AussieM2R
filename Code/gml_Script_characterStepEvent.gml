@@ -1146,6 +1146,7 @@ if (state == BALL || state == AIRBALL)
     }
 }
 chStepSpiderBall()
+chStepSpiderBall()
 if ((walking == 1 || ((inwater || waterfall > 0) && global.currentsuit < 2) || turning) && monster_drain == 0 && state == RUNNING)
     speedboost_steps = 0
 if (dash == 0 && state == RUNNING && speedboost_steps > 75 && (inwater == 0 || global.currentsuit == 2))
@@ -1525,6 +1526,8 @@ if (state == IDLE)
 }
 if (state == SAVING)
 {
+    xVel = 0
+    yVel = 0
     if (x < global.savexpos)
         x += 1
     if (x > global.savexpos)
@@ -3474,7 +3477,7 @@ else
 if (state != BALL && state != AIRBALL && state != SPIDERBALL && state != SUPERJUMP)
     setCollisionBounds(-6, -38, 6, -11)
 if (state == BALL)
-    setCollisionBounds(-6, -13, 6, 0)
+    setCollisionBounds(-6, -13, 6, -2)
 if (state == SPIDERBALL || state == AIRBALL || state == WATERJET || state == KNOCKBACK1 || state == KNOCKBACK2 || ((state == HURT || state == BRAKING || state == SJSTART || state == SJEND) && sjball == 1))
     setCollisionBounds(-6, -13, 6, 0)
 if (state == SUPERJUMP && sjdir != 0 && sjball == 0)
