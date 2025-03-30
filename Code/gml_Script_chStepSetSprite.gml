@@ -4677,6 +4677,8 @@ if (state == SUPERJUMP || speedboost || (state == SJSTART && statetime > 16))
         {
             if (sjball == 0)
             {
+                mysb.x = x + 2
+                mysb.y = y - 12
                 if (xVel != 0)
                     mysb.image_xscale = 1.8
                 if (yVel == 0)
@@ -4743,6 +4745,8 @@ if (state == SUPERJUMP || speedboost || (state == SJSTART && statetime > 16))
         {
             if (sjball == 0)
             {
+                mysb.x = x - 2
+                mysb.y = y - 12
                 if (xVel != 0)
                     mysb.image_xscale = 1.8
                 if (yVel == 0)

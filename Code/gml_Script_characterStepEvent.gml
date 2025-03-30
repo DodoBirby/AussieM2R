@@ -923,7 +923,7 @@ if (isCollisionTop(1) == 0 && isCollisionPlatformTop(1) == 0 && platformCharacte
         state = AIRBALL
     if (kJump == 0)
         vjump = 1
-    y += 1
+    y -= 1
     if (speedboost == 0)
         dash = 0
 }
@@ -2135,6 +2135,23 @@ if (kDown && kDownPushedSteps == 0 && platformCharacterIs(ON_GROUND) && state !=
         sfx_play(sndCrouch)
     }
 }
+if (state == BRAKING && kDown && kLeft == 0 && kRight == 0)
+{
+    if (sjball == 0)
+        state = DUCKING
+    if (sjball == 1)
+        state = BALL
+    statetime = 0
+    turning = 0
+    dash = 0
+    canturn = 1
+    charge = 240
+    sfx_loop(sndSBChargeLoop)
+    expl = instance_create(x, y + animOffset, oFXAnimSpark)
+    expl.image_speed = 0.5
+    expl.sprite_index = sSBChargeFX
+    expl.depth = -150
+}
 if (state == BRAKING)
 {
     dash = 0
@@ -2159,23 +2176,6 @@ if (state == BRAKING)
         canturn = 1
         sjball = 0
     }
-}
-if (state == BRAKING && statetime > 3 && kDown && kLeft == 0 && kRight == 0)
-{
-    if (sjball == 0)
-        state = DUCKING
-    if (sjball == 1)
-        state = BALL
-    statetime = 0
-    turning = 0
-    dash = 0
-    canturn = 1
-    charge = 240
-    sfx_loop(sndSBChargeLoop)
-    expl = instance_create(x, y + animOffset, oFXAnimSpark)
-    expl.image_speed = 0.5
-    expl.sprite_index = sSBChargeFX
-    expl.depth = -150
 }
 if (kUp && kUpPushedSteps == 0 && state == DUCKING)
 {
@@ -2765,7 +2765,7 @@ if (global.moverobj && global.currentsuit < 2)
             canturn = 1
             sball = 0
         }
-        yVel = -5
+        yVel = 5
         moverobj = 1
     }
     if (collision_line(round(x - 5), round(y - 2), round(x + 5), round(y - 2), oMoverDown, false, true) > 0 && state != CLIMBING)
@@ -2777,7 +2777,7 @@ if (global.moverobj && global.currentsuit < 2)
             canturn = 1
             sball = 0
         }
-        yVel = 5
+        yVel = -5
         moverobj = 1
     }
     if (collision_line(round(x - 5), round(y - 2), round(x + 5), round(y - 2), oMoverLeft, false, true) > 0 && state != CLIMBING)
@@ -2818,7 +2818,7 @@ if (global.moverobj && global.currentsuit < 2)
             sball = 0
         }
         xVel = -5
-        yVel = -5
+        yVel = 5
         moverobj = 1
         fixedx = 20
         fixedy = 20
@@ -3486,10 +3486,10 @@ if (state == SUPERJUMP && (sjdir == 3 || sjdir == 4) && sjball == 0)
     setCollisionBounds(-6, -27, 6, 0)
 if (state == SUPERJUMP && sjball == 1)
     setCollisionBounds(-6, -13, 6, 0)
-mask_index = sMask1
+mask_index = sMask1Moved
 if (state == DUCKING)
-    mask_index = sMask3
-if (state == BALL || state == AIRBALL || state == SPIDERBALL || state == WATERJET)
+    mask_index = sMask3Moved
+if (state == BALL || state == AIRBALL || state == SPIDERBALL || state == WATERJET || (state == HURT && multiBall == 1))
     mask_index = sMask4
 if (sjball == 1 && (state == SUPERJUMP || state == SJSTART || state == SJEND || state == BRAKING))
     mask_index = sMask4
