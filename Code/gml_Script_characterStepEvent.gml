@@ -3489,7 +3489,7 @@ if (state == SUPERJUMP && sjball == 1)
 mask_index = sMask1Moved
 if (state == DUCKING)
     mask_index = sMask3Moved
-if (state == BALL || state == AIRBALL || state == SPIDERBALL || state == WATERJET || (state == HURT && multiBall == 1))
+if (state == BALL || state == AIRBALL || state == SPIDERBALL || state == WATERJET || (state == HURT && multiBall == 1) || state == LOCKEDBALL)
     mask_index = sMask4
 if (sjball == 1 && (state == SUPERJUMP || state == SJSTART || state == SJEND || state == BRAKING))
     mask_index = sMask4
