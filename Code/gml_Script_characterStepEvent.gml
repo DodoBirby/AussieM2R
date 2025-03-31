@@ -3483,7 +3483,7 @@ if (state == SPIDERBALL || state == AIRBALL || state == WATERJET || state == KNO
 if (state == SUPERJUMP && sjdir != 0 && sjball == 0)
     setCollisionBounds(-6, -33, 6, -11)
 if (state == SUPERJUMP && (sjdir == 3 || sjdir == 4) && sjball == 0)
-    setCollisionBounds(-6, -27, 6, 0)
+    setCollisionBounds(-6, -27, 6, -11)
 if (state == SUPERJUMP && sjball == 1)
     setCollisionBounds(-6, -13, 6, 0)
 mask_index = sMask1Moved

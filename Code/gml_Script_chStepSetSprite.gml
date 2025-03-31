@@ -4689,10 +4689,13 @@ if (state == SUPERJUMP || speedboost || (state == SJSTART && statetime > 16))
             }
             if (sjball == 1)
             {
-                if (xVel != 0)
+                if (xVel != 0) {
                     mysb.image_xscale = 2
-                if (yVel != 0 && xVel == 0)
+                }
+                if (yVel != 0 && xVel == 0) {
+                    mysb.y = y + 4
                     mysb.image_yscale = 0.7
+                }
                 else
                     mysb.image_yscale = 0.6
                 if (yVel == 0)
@@ -4760,10 +4763,13 @@ if (state == SUPERJUMP || speedboost || (state == SJSTART && statetime > 16))
             }
             if (sjball == 1)
             {
-                if (xVel != 0)
+                if (xVel != 0) {
                     mysb.image_xscale = 2
-                if (yVel != 0 && xVel == 0)
+                }
+                if (yVel != 0 && xVel == 0) {
+                    mysb.y = y + 4
                     mysb.image_yscale = 0.7
+                }
                 else
                     mysb.image_yscale = 0.6
                 if (yVel == 0)
