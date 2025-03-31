@@ -474,7 +474,7 @@ if (state == STANDING || state == RUNNING)
                 y += 5
             }
         }
-        if (facing == LEFT && position_meeting((x - 7), (y - 27), oSolid) && position_meeting((x - 7), (y - 22), oSolid) == 0 && kJump && kJumpPushedSteps == 0 && global.powergrip && global.opautoclimb && y > 32)
+        if (facing == LEFT && position_meeting((x - 7), (y - 27), oSolid) && position_meeting((x - 7), (y - 19), oSolid) == 0 && kJump && kJumpPushedSteps == 0 && global.powergrip && global.opautoclimb && y > 32)
         {
             if (position_meeting((x - 7), (y + 2), oSolid) == 0 || global.morphball)
             {
@@ -543,7 +543,7 @@ if (state == STANDING || state == RUNNING)
                 y += 5
             }
         }
-        if (facing == RIGHT && position_meeting((x + 7), (y - 27), oSolid) && position_meeting((x + 7), (y - 22), oSolid) == 0 && kJump && kJumpPushedSteps == 0 && global.powergrip && global.opautoclimb)
+        if (facing == RIGHT && position_meeting((x + 7), (y - 27), oSolid) && position_meeting((x + 7), (y - 19), oSolid) == 0 && kJump && kJumpPushedSteps == 0 && global.powergrip && global.opautoclimb)
         {
             if (position_meeting((x + 7), (y + 2), oSolid) == 0 || global.morphball)
             {

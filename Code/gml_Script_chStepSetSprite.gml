@@ -4605,7 +4605,7 @@ if (global.screwattack == 1 && state == JUMPING && vjump == 0 && walljumping == 
         image_blend = make_color_rgb(150, 200, 150)
     if (fxtimer == 4)
         image_blend = make_color_rgb(180, 255, 200)
-    instance_create(x, y, oScrewAttack)
+    instance_create(x, y - 11, oScrewAttack)
     mytrail = instance_create(x, y, oFXTrail)
     mytrail.sprite_index = sprite_index
     mytrail.image_speed = image_speed
@@ -4616,7 +4616,7 @@ if (global.screwattack == 1 && state == JUMPING && vjump == 0 && walljumping == 
     mytrail.depth = -10
     if (facing == LEFT)
         mytrail.image_xscale = -1
-    mytrail = instance_create(x, (y - 15), oFXTrail)
+    mytrail = instance_create(x, (y - 22), oFXTrail)
     mytrail.sprite_index = sScrewSpark
     mytrail.image_index = round(random(2))
     mytrail.image_alpha = 1 + fxtimer * 0.1
@@ -4679,6 +4679,9 @@ if (state == SUPERJUMP || speedboost || (state == SJSTART && statetime > 16))
             {
                 mysb.x = x + 2
                 mysb.y = y - 12
+                if (sjdir == 0) {
+                    mysb.y = y
+                }
                 if (xVel != 0)
                     mysb.image_xscale = 1.8
                 if (yVel == 0)
@@ -4747,6 +4750,9 @@ if (state == SUPERJUMP || speedboost || (state == SJSTART && statetime > 16))
             {
                 mysb.x = x - 2
                 mysb.y = y - 12
+                if (sjdir == 0) {
+                    mysb.y = y
+                }
                 if (xVel != 0)
                     mysb.image_xscale = 1.8
                 if (yVel == 0)
@@ -4803,7 +4809,7 @@ if (state == SUPERJUMP && fxtimer == 0 && sjball == 0)
         myspark.additive = 1
     }
     if (sjdir == 1)
-        myspark = instance_create((x + 12), (y - 12), oFXAnimSpark)
+        myspark = instance_create((x + 12), (y - 27), oFXAnimSpark)
     if (sjdir == 3)
     {
         myspark = instance_create((x + 12), (y - 16), oFXAnimSpark)
