@@ -19,12 +19,12 @@ if surface_exists(igt_surface)
     draw_set_alpha(1)
     draw_set_color(c_white)
     draw_cool_text(4, 16, steps_to_time2(global.gametime), c_black, c_white, c_gray, 1)
-    if instance_exists(oCharacter) {
-        draw_cool_text(4, 27, "Ballfall: " + string(oCharacter.ballfall), c_black, c_white, c_gray, 1)
-        draw_cool_text(4, 38, "State: " + string(oCharacter.state), c_black, c_white, c_gray, 1)
-        draw_cool_text(4, 49, "Statetime: " + string(oCharacter.statetime), c_black, c_white, c_gray, 1)
-        draw_cool_text(4, 60, "YVel: " + string(oCharacter.yVel), c_black, c_white, c_gray, 1)
-    }
+    // if instance_exists(oCharacter) {
+    //     draw_cool_text(4, 27, "Ballfall: " + string(oCharacter.ballfall), c_black, c_white, c_gray, 1)
+    //     draw_cool_text(4, 38, "State: " + string(oCharacter.state), c_black, c_white, c_gray, 1)
+    //     draw_cool_text(4, 49, "Statetime: " + string(oCharacter.statetime), c_black, c_white, c_gray, 1)
+    //     draw_cool_text(4, 60, "YVel: " + string(oCharacter.yVel), c_black, c_white, c_gray, 1)
+    // }
     if instance_exists(oClient)
     {
         yoff = 27
