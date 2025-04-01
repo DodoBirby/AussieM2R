@@ -17,5 +17,6 @@ file_delete(working_directory + "/multitroid/save" + (string(global.saveslot + 1
 scr_newgame()
 global.item[2] = 1
 global.spiderball = 1
+global.itemstaken = 1
 save_game(working_directory + "/multitroid/save" + (string(global.saveslot + 1)))
 room_change(global.start_room, 0)
