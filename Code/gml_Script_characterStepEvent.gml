@@ -1770,6 +1770,7 @@ if (state == KNOCKBACK1)
         turning = 0
         statetime = 0
         state = KNOCKBACK1_LAND
+        y += 25
         sfx_play(sndKnockdown)
     }
 }
@@ -1833,12 +1834,6 @@ if (state == KNOCKBACK1_LAND)
         idle = 0
     }
     xFric = 0.7
-    if (isCollisionTop(1) == 0)
-    {
-        state = KNOCKBACK1
-        statetime = 10
-        image_index = 2
-    }
 }
 if (state == KNOCKBACK2)
 {
